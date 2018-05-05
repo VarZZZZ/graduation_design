@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.OrdersItemMapper">
+	<resultMap type="OrdersItem" id="OrdersItemBean">
+		<id column="oiid" property="id"/>
+		<result column="number" property="number" />
+		
+		<association property="product" javaType="Product">
+			<id column="pid" property="id" />
+			<result column="pname" property="name" />
+			<result column="price" property="price" />
+			<result column="imageurl" property="imageurl" />
+		</association>
+		
+		<association property="orders" javaType="Orders">
+			<id column="oid" property="id" />
+			<result column="uid" property="uid" />
+			<result column="status" property="status" />
+		</association>
+	</resultMap>
+
+	<insert id="add" parameterType="OrdersItem">
+		insert into ordersitem(number,pid,oid) values(#{number},#{product.id},#{orders.id})
+	</insert>
+	<delete id="delete" parameterType="OrdersItem">
+		delete from ordersitem where id=#{id}
+	</delete>
+	<select id="get" parameterType="_int" resultMap="OrdersItemBean">
+		select oi.id 'oiid',number,p.id 'pid',p.name 'pname',price,imageurl,o.id 'oid',uid,status 
+			from ordersitem oi 
+			left join product p on oi.pid=p.id
+			left join orders o on oi.oid=o.id
+			where oi.id=#{id}
+	</select>
+	<update id="update" parameterType="OrdersItem">
+		update ordersitem set number=#{number},pid=#{product.id},oid=#{orders.id} where id=#{id}
+	</update>
+	<select id="list" resultType="OrdersItem">
+		select * from ordersitem
+	</select>
+	<select id="getByProductOrders" parameterType="map" resultMap="OrdersItemBean">
+		select oi.id 'oiid',number,p.id 'pid',p.name 'pname',price,imageurl,o.id 'oid',uid,status 
+			from ordersitem oi 
+			left join product p on oi.pid=p.id
+			left join orders o on oi.oid=o.id
+			where p.id=#{0} and o.id=#{1}
+	</select>
+</mapper>

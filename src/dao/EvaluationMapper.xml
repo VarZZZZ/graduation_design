@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.EvaluationMapper">
+    <insert id="add" parameterType="Evaluation">
+        INSERT INTO evaluation (id, evacontent, evatime) VALUES (#{id}, #{evacontent},
+        #{evatime})
+    </insert>
+    <delete id="delete" parameterType="Evaluation">
+        DELETE FROM evaluation
+        WHERE id = #{id}
+    </delete>
+    <select id="get" parameterType="String" resultType="Evaluation">
+        SELECT *
+        FROM evaluation
+        WHERE id = #{id}
+    </select>
+    <update id="update" parameterType="Evaluation">
+        UPDATE evaluation
+        SET evatime=#{evatime},evacontent=#{evacontent}
+        WHERE id = #{id}
+    </update>
+    <select id="list" resultType="Evaluation">
+        SELECT *
+        FROM evaluation
+    </select>
+</mapper>

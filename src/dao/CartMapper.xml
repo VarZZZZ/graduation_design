@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.CartMapper">
+	<resultMap type="Cart" id="cartBean">
+            <id column="cid" property="id" />
+            <result column="ccode" property="code" />
+            <result column="uid" property="uid" />
+            <collection property="cartItems" ofType="CartItem">
+                <id column="ciid" property="id" />
+                <result column="number" property="number" />
+                <association property="product" javaType="Product">
+                    <id column="pid" property="id"/>
+                    <result column="pname" property="name"/>
+                    <result column="price" property="price"/>
+                    <result column="imageurl" property="imageurl" />
+                </association>                
+            </collection>
+        </resultMap>
+
+	<insert id="add" parameterType="Cart">
+		insert into cart(code,uid) values(#{code},#{uid})
+	</insert>
+	<delete id="delete" parameterType="Cart">
+		delete from cart where id=#{id}
+	</delete>
+	<select id="get" parameterType="_int" resultType="Cart">
+		select * from cart where id=#{id}
+	</select>
+	<update id="update" parameterType="Cart">
+		update cart set code=#{code},uid=#{uid} where id=#{id}
+	</update>
+	<select id="list" resultType="Cart">
+		select * from cart
+	</select>
+	<select id="listOrder" resultMap="cartBean">
+            select c.id 'cid',c.code 'ccode',uid,ci.id 'ciid',number, p.id 'pid', p.name 'pname',price,imageurl 
+                from cart c 
+                left join cartitem ci on c.id =ci.cid 
+                left join product p on p.id = ci.pid 
+     </select>
+             
+     <select id="getCart" parameterType="_int" resultMap="cartBean">
+            select c.id 'cid',c.code 'ccode',uid,ci.id 'ciid',number, p.id 'pid', p.name 'pname',price,imageurl 
+                from cart c 
+                left join cartitem ci on c.id =ci.cid 
+                left join product p on p.id = ci.pid 
+            where c.id = #{id} 
+     </select>
+     
+     <select id="getCartByUid" parameterType="_int" resultMap="cartBean">
+            select c.id 'cid',c.code 'ccode',uid,ci.id 'ciid',number, p.id 'pid', p.name 'pname',price,imageurl 
+                from cart c 
+                left join cartitem ci on c.id =ci.cid 
+                left join product p on p.id = ci.pid 
+            where uid = #{id} 
+     </select>
+</mapper>

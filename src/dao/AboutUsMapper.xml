@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.AboutUsMapper">
+    <insert id="add" parameterType="AboutUs">
+        insert into aboutus(content,imageurl,about) values(#{content},#{imageurl},#{about})
+    </insert>
+    <delete id="delete" parameterType="AboutUs">
+        delete from aboutus where id=#{id}
+    </delete>
+    <select id="get" parameterType="_int" resultType="AboutUs">
+        select * from aboutus where id=#{id}
+    </select>
+    <update id="update" parameterType="AboutUs">
+        update aboutus set content=#{content},imageurl=#{imageurl},about=#{about} where id=#{id}
+    </update>
+    <select id="list" resultType="AboutUs">
+        select * from aboutus
+    </select>
+</mapper>

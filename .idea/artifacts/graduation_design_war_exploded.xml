@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="graduation_design:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/graduation_design_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="graduation_design/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="graduation_design" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="lib" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

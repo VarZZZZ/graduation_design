@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.CategoryAMapper">
+    <resultMap id="CategoryABean" type="CategoryA">
+        <id column="caid" property="id"/>
+        <result column="caname" property="name"/>
+
+        <collection property="categoryBs" ofType="CategoryB">
+            <id column="cbid" property="id" />
+            <result column="cbname" property="name"/>
+
+            <collection property="products" ofType="Product">
+                <id column="pid" property="id"/>
+                <result column="code" property="code"/>
+                <result column="pname" property="name" />
+                <result column="price" property="price" />
+                <result column="imageurl" property="imageurl" />
+            </collection>
+        </collection>
+
+    </resultMap>
+    <insert id="add" parameterType="CategoryA">
+        insert into categorya(name) values(#{name})
+    </insert>
+    <delete id="delete" parameterType="CategoryA">
+        delete from categorya where id=#{id}
+    </delete>
+    <select id="get" parameterType="_int" resultType="CategoryA">
+        select * from categorya where id=#{id}
+    </select>
+    <update id="update" parameterType="CategoryA">
+        update categorya set name=#{name} where id=#{id}
+    </update>
+    <select id="list" resultType="CategoryA">
+       select * from categorya
+    </select>
+    <select id="getByName" parameterType="String" resultType="CategoryA">
+        select * from categorya where name=#{name}
+    </select>
+    <select id="listName" parameterType="String" resultType="CategoryA">
+        select * from categorya where name=#{name}
+    </select>
+    <select id="listByName" parameterType="String" resultType="CategoryA">
+        select * from categorya where name like CONCAT('%',#{name},'%')
+    </select>
+    <select id="listCategoryB" parameterType="_int" resultMap="CategoryABean">
+        select ca.id 'caid',ca.name 'caname',cb.id 'cbid',cb.name 'cbname' from categorya ca left join categoryb cb on ca.id=cb.caid
+    </select>
+    <select id="listProducts" parameterType="_int" resultMap="CategoryABean">
+        select ca.id 'caid',cb.id 'cbid',cb.name 'cbname',ca.name 'caname',p.id 'pid',p.name 'pname',code,price,imageurl from categorya ca left join categoryb cb on ca.id=cb.caid left  join product p on p.cbid=cb.id where ca.id=#{id}
+    </select>
+</mapper>

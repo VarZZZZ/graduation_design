@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.SendMapper">
+    <insert id="add" parameterType="Send">
+        INSERT INTO send (id, companyname, companycode, companyweb, sendtime) VALUES (#{id}, #{companyname},
+                                                                                      #{companycode}, #{companyweb},
+                                                                                      #{sendtime})
+    </insert>
+    <delete id="delete" parameterType="Send">
+        DELETE FROM send
+        WHERE id = #{id}
+    </delete>
+    <select id="get" parameterType="String" resultType="Send">
+        SELECT *
+        FROM send
+        WHERE id = #{id}
+    </select>
+    <update id="update" parameterType="Send">
+        UPDATE send
+        SET companycode=#{companycode},companyname=#{companyname},companyweb=#{companyweb},sendtime=#{sendtime}
+        WHERE id = #{id}
+    </update>
+    <select id="list" resultType="Send">
+        SELECT *
+        FROM send
+    </select>
+</mapper>

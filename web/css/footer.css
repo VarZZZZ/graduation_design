@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.footer{
+	float:left;
+	margin:0 auto;
+	width: 1100px;
+	font-size: 14px;
+	margin-top:20px;
+	text-align:center;
+}

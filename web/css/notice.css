@@ -1,0 +1,93 @@
+.bgTop{
+    margin:0 auto;
+    width:1200px;
+}
+.bgTop2{
+    overflow: hidden;
+    height:35px;
+    line-height:35px;
+    padding:5px 0 0 5px;
+}
+.bgTop2 span a{
+    color:#333333;
+    text-decoration:none;
+}
+.bgTop2 span a:hover{
+    color:#556fff;
+}
+
+.form-content{
+
+    font-family: arial,"Lantinghei SC","Microsoft Yahei";
+    font-size:14px;
+    width:1200px;
+    margin:10px auto;
+}
+
+.form-content span{
+    font-size:16px;
+    font-weight:bold;
+    font-family: arial,"Lantinghei SC","Microsoft Yahei";
+}
+
+.formtitle{
+    border-bottom:solid 1px #d0dee5;
+    line-height:35px;
+    height:35px;
+    margin-bottom:28px;
+    margin-left:30px;
+    width:800px;
+}
+label{
+    font-size:18px;
+}
+.rowStyle{
+    margin-left:30px;
+    padding-bottom:20px;
+}
+
+.textareaStyle{
+    width:600px;
+    height:200px;
+    font-size:14px;
+    font-family: arial,"Lantinghei SC","Microsoft Yahei";
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+}
+.textStyle{
+    width:400px;
+    height:30px;
+    font-size:14px;
+    font-family: arial,"Lantinghei SC","Microsoft Yahei";
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+}
+
+.headline{
+    text-align: center;
+    margin: 0 auto;
+    font-size:25px;
+    font-family: arial,"Lantinghei SC","Microsoft Yahei";
+}
+.content{
+    font-size:16px;
+    margin-left: 40px;
+    font-family: arial,"Lantinghei SC","Microsoft Yahei";
+}
+.releasetime{
+    font-size:13px;
+    margin-left:600px;
+}
+
+.news{
+    width:670px;
+    margin:30px auto;
+}
+.newsTitle{
+    display: block;
+    color: #3f3b3a;
+    font-size: 30px;
+    padding-bottom: 5px;
+    margin: auto;
+    font-weight: normal;
+}

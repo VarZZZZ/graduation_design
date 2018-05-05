@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ReplyMapper">
+    <insert id="add" parameterType="Reply">
+        INSERT INTO reply (code, content, time) VALUES (#{code}, #{content}, #{time})
+    </insert>
+    <delete id="delete" parameterType="Reply">
+        DELETE FROM reply
+        WHERE id = #{id}
+    </delete>
+    <select id="get" parameterType="_int" resultType="Reply">
+        SELECT *
+        FROM reply
+        WHERE id = #{id}
+    </select>
+    <update id="update" parameterType="Reply">
+        UPDATE reply
+        SET code = #{code}, content = #{content}, time = #{time}
+        WHERE id = #{id}
+    </update>
+    <select id="list" resultType="Reply">
+        SELECT *
+        FROM reply
+    </select>
+    <select id="getByCode" parameterType="String" resultType="Reply">
+        SELECT *
+        FROM reply
+        WHERE code = #{#code}
+    </select>
+</mapper>

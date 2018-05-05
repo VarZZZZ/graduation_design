@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.OnlineMsgMapper">
+    <resultMap type="OnlineMsg" id="onlinemsgBean">
+        <id column="oid" property="id" />
+        <result column="theme" property="theme"/>
+        <result column="date" property="date" />
+        <result column="uid" property="uid" />
+        <result column="content" property="content"/>
+        <association property="olReply" javaType="OnlineReply">
+            <id column="rid" property="id" />
+            <result column="recontent" property="recontent" />
+            <result column="redate" property="redate"/>
+        </association>
+    </resultMap>
+
+    <insert id="add" parameterType="OnlineMsg">
+        insert into onlinemsg(theme,content,date,uid) values(#{theme},#{content},#{date},#{uid})
+    </insert>
+    <delete id="delete" parameterType="OnlineMsg">
+        delete from onlinemsg where id=#{id}
+    </delete>
+    <select id="get" parameterType="_int" resultType="OnlineMsg">
+        select * from onlinemsg where id=#{id}
+    </select>
+    <update id="update" parameterType="OnlineMsg">
+        update onlinemsg set theme=#{theme},content=#{content},date=#{date},uid=#{uid} where id=#{id}
+    </update>
+    <select id="list" resultType="OnlineMsg">
+        select * from onlinemsg
+    </select>
+    <select id="listOnlineMsg" resultMap="onlinemsgBean">
+        select m.id 'oid',theme,content,date,uid,r.id 'rid',recontent,redate
+        from onlinemsg m
+        left join onlinereply r on m.id=r.mid
+    </select>
+
+    <select id="getOnlineMsg" parameterType="_int" resultMap="onlinemsgBean">
+        select m.id 'oid',theme,content,date,uid,r.id 'rid',recontent,redate
+        from onlinemsg m
+         left join onlinereply r on m.id=r.mid where m.id=#{id}
+    </select>
+
+    <select id="getOnlineMsgByUid" parameterType="_int" resultMap="onlinemsgBean">
+        select m.id 'oid',theme,content,date,uid,r.id 'rid',recontent,redate
+        from onlinemsg m
+            left join onlinereply r on m.id=r.mid where m.uid=#{id}
+    </select>
+</mapper>

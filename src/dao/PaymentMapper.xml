@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.PaymentMapper">
+    <insert id="add" parameterType="Payment">
+        insert into payment(id,accountid,uid,type,paytime,total) values(#{id},#{accountid},#{uid},#{type},#{paytime},#{total})
+    </insert>
+    <delete id="delete" parameterType="Payment">
+        delete from payment where id=#{id}
+    </delete>
+    <select id="get" parameterType="String" resultType="Payment">
+        select * from payment where id=#{id}
+    </select>
+    <update id="update" parameterType="Payment">
+        update payment set uid=#{uid},accountid=#{accountid},type=#{type},paytime=#{paytime},total=#{total} where id=#{id}
+    </update>
+    <select id="list" resultType="Payment">
+        select * from payment
+    </select>
+</mapper>

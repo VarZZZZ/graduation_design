@@ -1,0 +1,163 @@
+.bgTop{
+    margin:0 auto;
+    width:1200px;
+}
+.bgTop2{
+    overflow: hidden;
+    height:35px;
+    line-height:35px;
+    padding:5px 0 0 5px;
+}
+.bgTop2 span a{
+    color:#333333;
+    text-decoration:none;
+}
+.bgTop2 span a:hover{
+    color:#556fff;
+}
+.productList{
+    margin:0 auto;
+    width:1200px;
+}
+.bgTop2{
+    overflow: hidden;
+    height:35px;
+    line-height:35px;
+    padding:5px 0 0 5px;
+}
+
+
+.sub-title{
+    text-align: center;
+    margin: 20px auto;
+    font-size: 12px;
+    color: #51504e;
+    width: 714px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    height: 109px;
+}
+.title-name{
+    display:block;
+    color:#3f3b3a;
+    font-size:30px;
+    padding-bottom:5px;
+    margin:auto;
+    font-weight:normal;
+}
+.sub-title span{
+    display:inline-block;
+    text-transform:uppercase;
+    font-family:arial;
+    letter-spacing:2px;
+
+    padding:0 80px;
+    position:relative
+}
+.sub-title span::before, .sub-title span::after{
+    content:"";
+    width:60px;
+    height:1px;
+    background-color:#999;
+    top:8px;
+    position:absolute;
+}
+.sub-title span::before{
+    left:18px;
+}
+
+.btnMsg{
+    width: 731px;
+    height:40px;
+    margin:0 auto;
+    border-bottom: 1px solid rgba(0,0,0,.15);
+}
+
+
+.panel{
+    padding-left:350px;
+    padding-top:20px;
+}
+.panel-title{
+    font-size:20px;
+    color:#3f3b3a;
+    font-weight:normal;
+}
+.mytable{
+    width:800px;
+    margin: 10px auto 0;
+
+}
+
+.panel-header ul li{
+    font-size:16px;
+    max-width:1100px;
+    margin-left:30px;
+    list-style:none;
+    float:left;
+}
+
+.mypanel{
+    float:left;
+}
+
+.set-padding-bottom{
+    padding-bottom:20px;
+}
+
+.textareaStyle{
+    width:340px;
+    height:160px;
+    font-size:14px;
+    font-family: arial,"Lantinghei SC","Microsoft Yahei";
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+}
+
+.imageStyle{
+    height:50px;
+    width:60px;
+}
+
+.mytable tr td{
+    vertical-align: middle;
+}
+
+.main-table-center{
+    float: left;
+    width: 700px;
+}
+.main-table{
+
+    width: 1200px;
+    margin: 10px auto 0;
+}
+
+.tddiv{
+    height:300px;
+    width:200px;
+}
+
+.tddiv ul li{
+    list-style:none;
+    text-align:center;
+}
+
+.main-table-left{
+    float:left;
+    width:180px;
+    background:#FFFFFF;
+    margin-left:5px;
+    text-align:center;
+    margin-right:20px;
+}
+
+.menutop-parting-line{
+    display: block;
+    height:6px;
+    width:100%;
+    border-bottom:6px solid #ffcccc;
+}
+.btnSet{
+    border: solid 1px #ff0000;
+}
+

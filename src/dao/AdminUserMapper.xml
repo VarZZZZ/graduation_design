@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.AdminUserMapper">
+    <insert id="add" parameterType="AdminUser">
+        insert into adminUser(name,mobile,password,role,code) values(#{name},#{mobile},#{password},#{role},#{code})
+    </insert>
+    <delete id="delete" parameterType="_int">
+        delete from adminUser where id=#{id}
+    </delete>
+    <select id="get" parameterType="_int" resultType="AdminUser">
+        select * from adminUser where id=#{id}
+    </select>
+    <update id="update" parameterType="AdminUser">
+        update adminUser set name=#{name},mobile=#{mobile},password=#{password},role=#{role},code=#{code} where id=#{id}
+    </update>
+    <select id="list" resultType="AdminUser">
+        select * from adminUser
+    </select>
+    <select id="getByCodePassword" parameterType="map" resultType="AdminUser">
+        select * from adminuser where code=#{0} and password=#{1}
+    </select>
+</mapper>

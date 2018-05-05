@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.CustomizationMapper">
+    <insert id="add" parameterType="Customization">
+        insert into customization(uid,pid,demand,status,price,number,total) values(#{uid},#{pid},#{demand},#{status},#{price},#{number},#{total})
+    </insert>
+    <delete id="delete" parameterType="Customization">
+        delete from customization where id=#{id}
+    </delete>
+    <select id="get" parameterType="_int" resultType="Customization">
+        select * from customization where id=#{id}
+    </select>
+    <update id="update" parameterType="Customization">
+        update customization set uid=#{uid},pid=#{pid},demand=#{demand},status=#{status},price=#{price},number=#{number},total=#{total} where id=#{id}
+    </update>
+    <select id="list" resultType="Customization">
+        select * from customization
+    </select>
+    <select id="listByUid" parameterType="_int" resultType="Customization">
+        select * from customization where uid=#{uid}
+    </select>
+
+</mapper>

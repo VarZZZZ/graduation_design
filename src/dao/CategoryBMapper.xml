@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.CategoryBMapper">
+    <resultMap type="CategoryB" id="CategoryBBean">
+        <id column="cbid" property="id" />
+        <result column="cname" property="name" />
+
+        <collection property="products" ofType="Product">
+            <id column="pid" property="id" />
+            <result column="code" property="code" />
+            <result column="pname" property="name" />
+            <result column="price" property="price" />
+            <result column="imageurl" property="imageurl" />
+            <result column="description" property="description"/>
+        </collection>
+    </resultMap>
+
+    <insert id="add" parameterType="CategoryB">
+        insert into categoryb(caid,name) values(#{caid},#{name})
+    </insert>
+    <delete id="delete" parameterType="CategoryB">
+        delete from categoryb where id=#{id}
+    </delete>
+    <select id="get" parameterType="_int" resultType="CategoryB">
+        select * from categoryb where id=#{id}
+    </select>
+    <update id="update" parameterType="CategoryB">
+        update categoryb set caid=#{caid},name=#{name} where id=#{id}
+    </update>
+    <select id="list" resultType="CategoryB">
+        select * from categoryb order by id
+    </select>
+    <select id="getByName" parameterType="String" resultType="CategoryB">
+        select * from categoryb where name=#{name}
+    </select>
+    <select id="listName" parameterType="String" resultType="CategoryB">
+        select * from categoryb where name=#{name}
+    </select>
+    <select id="listByName" parameterType="String" resultType="CategoryB">
+        select * from categoryb where name like CONCAT('%',#{name},'%')
+    </select>
+    <select id="listProducts" parameterType="_int" resultMap="CategoryBBean">
+        select c.id 'cbid',p.id 'pid',c.name 'cname',p.name 'pname',code,price,imageurl,description from categoryb c left join product p on c.id=p.cbid where p.cbid=#{id}
+    </select>
+</mapper>

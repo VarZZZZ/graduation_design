@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+.form-content{
+    float:left;
+    font-family: arial,"Lantinghei SC","Microsoft Yahei";
+    font-size:14px;
+}
+
+.form-content span{
+    font-size:16px;
+    font-weight:bold;
+    font-family: arial,"Lantinghei SC","Microsoft Yahei";
+}
+
+.formtitle{
+    border-bottom:solid 1px #d0dee5;
+    line-height:35px;
+    height:35px;
+    margin-bottom:28px;
+    margin-left:30px;
+    width:800px;
+}
+
+.rowStyle{
+    margin-left:30px;
+    padding-bottom:10px;
+}
+
+.textareaStyle{
+    width:600px;
+    height:200px;
+    font-size:14px;
+    font-family: arial,"Lantinghei SC","Microsoft Yahei";
+}
+
+.main-table-send{
+    margin:5px auto;
+    width:1200px;
+}
