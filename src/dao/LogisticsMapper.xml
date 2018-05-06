@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.LogisticsMapper">
+    <resultMap type="Logistics" id="logisticsBean">
+        <id column="loid" property="id"/>
+        <result column="oid" property="oid"/>
+        <result column="cusid" property="cusid"/>
+
+        <collection property="logisticsItems" ofType="LogisticsItem">
+            <id column="loiid" property="id"/>
+            <result column="info" property="info"/>
+            <result column="date" property="date" />
+        </collection>
+    </resultMap>
+
+    <insert id="orderAdd" parameterType="Logistics">
+        INSERT INTO logistics (oid) VALUES (#{orders.id})
+    </insert>
+    <insert id="customizedAdd" parameterType="Logistics">
+        INSERT INTO logistics (cusid) VALUES (#{customization.id})
+    </insert>
+    <select id="orderGet" parameterType="_int" resultMap="logisticsBean">
+        SELECT l.id 'loid',l.oid 'oid',li.id 'loiid',info,date
+        FROM logistics l left JOIN logisticsitem li on l.id=li.loid
+        WHERE oid = #{oid}
+    </select>
+
+    <select id="customizedGet" parameterType="_int" resultMap="logisticsBean">
+        SELECT l.id 'loid',l.cusid 'cusid',li.id 'loiid',info,date
+        FROM logistics l left JOIN logisticsitem li on l.id=li.loid
+        WHERE cusid=#{cusid}
+    </select>
+
+</mapper>
