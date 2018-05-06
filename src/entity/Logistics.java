@@ -1,6 +1,8 @@
 package entity;
 
 
+import viewmodel.CustomizationVM;
+
 import java.util.List;
 
 /**
@@ -12,7 +14,7 @@ public class Logistics {
     private int cusid;
     private List<LogisticsItem> logisticsItems;
     private Orders orders;
-    private Customization customization;
+    private CustomizationVM customizationVM;
     public int getId() {
         return id;
     }
@@ -54,11 +56,12 @@ public class Logistics {
         this.logisticsItems = logisticsItemList;
     }
 
-    public Customization getCustomization() {
-        return customization;
+
+    public CustomizationVM getCustomizationVM() {
+        return customizationVM;
     }
 
-    public void setCustomization(Customization customization) {
-        this.customization = customization;
+    public void setCustomizationVM(CustomizationVM customizationVM) {
+        this.customizationVM = customizationVM;
     }
 }

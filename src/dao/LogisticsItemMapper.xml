@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.LogisticsItemMapper">
+    <resultMap type="LogisticsItem" id="LogisticsItemBean">
+        <id column="loiid" property="id"/>
+        <result column="info" property="info"/>
+        <result column="date" property="date" />
+
+        <association property="logistics" javaType="Logistics">
+            <id column="loid" property="id" />
+            <result column="oid" property="oid" />
+            <result column="cusid" property="cusid"/>
+        </association>
+
+    </resultMap>
+
+    <insert id="add" parameterType="LogisticsItem">
+        insert into logisticsitem(loid,info,date) VALUE (#{loid},#{info},#{date})
+    </insert>
+
+</mapper>
