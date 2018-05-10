@@ -36,6 +36,10 @@
                         <c:when test="${o.status=='待发货'}">
                             <a href="adminAddSend?id=${o.code}&total=${o.total}&status=${o.status}&uid=${o.uid}" class="btn btnSet">${o.status}</a>
                         </c:when>
+                        <c:when test="${o.status=='待确认'}">
+                            ${o.status}<br>
+                            <a href="adminOrdLogistics?oid=${o.id}" class="btn btnSet">物流详情</a>
+                        </c:when>
                         <c:otherwise>
                             ${o.status}
                         </c:otherwise>

@@ -9,6 +9,6 @@ import entity.Logistics;
 public interface LogisticsService {
     int orderAdd(Logistics logistics);
     int customizedAdd(Logistics logistics);
-    Logistics orderGet(int oid);
+    Logistics orderGet(int oid) throws Exception;
     Logistics customizedGet(int cusid);
 }

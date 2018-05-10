@@ -7,4 +7,5 @@ public class OrderStatus {
 	public static String ORDER_NOT_EVALUATION="待评价";
 	public static String ORDER_OK ="查看详情";
 	public static String ORDER_NOT_PRODUCE="待生产";
+	public static String ORDER_LOGISTICS="物流详情";
 }

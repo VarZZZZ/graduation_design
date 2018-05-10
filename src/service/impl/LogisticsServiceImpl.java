@@ -37,16 +37,21 @@ public class LogisticsServiceImpl implements LogisticsService {
     }
 
     @Override
-    public Logistics orderGet(int oid) {
+    public Logistics orderGet(int oid)throws Exception {
         Logistics logistics=logisticsMapper.orderGet(oid);
-        Orders orders = ordersService.getOrders(oid);
-        logistics.setOrders(orders);
-        return logistics;
+        if(logistics==null)
+            return null;
+        else{
+            Orders orders = ordersService.getOrders(oid);
+            logistics.setOrders(orders);
+            return logistics;
+        }
+
     }
 
     @Override
     public Logistics customizedGet(int cusid) {
-        Logistics logistics=logisticsMapper.orderGet(cusid);
+        Logistics logistics=logisticsMapper.customizedGet(cusid);
         Customization cus = customizationService.get(cusid);
         Product  p = productService.get(cus.getPid());
         CustomizationVM cusVM =new CustomizationVM();
