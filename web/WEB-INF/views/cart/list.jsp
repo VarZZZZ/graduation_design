@@ -68,18 +68,25 @@
             });
         });
         $(".ToSubmit").on("click", function () {
-            $.ajax({
-                type: "POST",
-                url: "addToOrders",
-                success: function (json) {
-                    if (json === "1") {
-                        window.location.href="home";
-                    }else{
-                        $("#Info").text("添加失败");
-                        $("#myModalInfo").modal("show");
+            var t;
+            t=$("#testT").attr("dataT");
+            if(t<=0)
+                window.location.href="listCart";
+            else{
+                $.ajax({
+                    type: "POST",
+                    url: "addToOrders",
+                    success: function (json) {
+                        if (json === "1") {
+                            window.location.href="home";
+                        }else{
+                            $("#Info").text("添加失败");
+                            $("#myModalInfo").modal("show");
+                        }
                     }
-                }
-            });
+                });
+            }
+
         });
     });
 </script>
@@ -118,7 +125,8 @@
         </c:forEach>
     </table>
     <div class="totalDiv">
-        <label class="labelStyle">总价:${total}(元)</label>
+        <label id="testT" class="labelStyle" dataT="${total}">总价:${total}(元)</label>
+
         <br>
         <a href="javascript:void(0);"
            class="ToSubmit btn btnBuy">

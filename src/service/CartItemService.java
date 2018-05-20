@@ -10,5 +10,5 @@ public interface CartItemService {
 	public CartItem get(int id);
 	public int update(CartItem cartItem);
 	public List<CartItem> list();
-	public CartItem getByProductCart(int pid, int cid);
+	public CartItem getByProductCart(int pid, int cid) throws Exception;
 }

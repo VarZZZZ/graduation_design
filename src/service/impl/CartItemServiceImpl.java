@@ -39,7 +39,7 @@ public class CartItemServiceImpl implements CartItemService {
 	}
 
 	@Override
-	public CartItem getByProductCart(int pid, int cid) {
+	public CartItem getByProductCart(int pid, int cid)throws Exception{
 		return cartItemMapper.getByProductCart(pid, cid);
 	}
 
