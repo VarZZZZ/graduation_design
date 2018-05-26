@@ -14,6 +14,8 @@ import service.LogisticsService;
 import service.OrdersService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -28,11 +30,16 @@ public class LogisticsController {
     @Autowired
     OrdersService ordersService;
 
+
+    private DateFormat df = new SimpleDateFormat("yyyy-MM-dd E HH:mm:ss");
+
     @RequestMapping("/getOrdLogistics")
     public ModelAndView getOrdLogistics(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
         int oid = Integer.parseInt(request.getParameter("oid"));
+        Orders  orders = ordersService.getOrders(oid);
         Logistics logistics = logisticsService.orderGet(oid);
+        mav.addObject("order",orders);
         mav.addObject("logistics",logistics);
         mav.setViewName("logistics/getOrdLogistics");
         return mav;
@@ -70,7 +77,6 @@ public class LogisticsController {
     }
 
     @RequestMapping("addLogistics")
-    @ResponseBody
     public String addOrdLogistics(HttpServletRequest request) throws Exception {
         int oid = Integer.parseInt(request.getParameter("oid"));
         int cusid = Integer.parseInt(request.getParameter("cusid"));
@@ -79,7 +85,6 @@ public class LogisticsController {
         Date date = new Date();
         LogisticsItem logisticsItem;
         int loid;
-        int rel;
         if(oid>0){
             logistics = logisticsService.orderGet(oid);
             if(logistics==null){
@@ -104,9 +109,12 @@ public class LogisticsController {
         }
         logisticsItem = new LogisticsItem();
         logisticsItem.setLoid(loid);
-        logisticsItem.setDate(date.toString());
+        logisticsItem.setDate(df.format(date));
         logisticsItem.setInfo(info);
-        rel = logisticsItemService.add(logisticsItem);
-        return String.valueOf(rel);
+        logisticsItemService.add(logisticsItem);
+       if(oid>0)
+           return "redirect:/adminOrdLogistics?oid="+oid;
+       else
+           return "redirect:/adminCusLogistics?cusid="+cusid;
     }
 }

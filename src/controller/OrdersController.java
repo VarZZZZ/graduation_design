@@ -1,6 +1,7 @@
 package controller;
 
 import entity.Evaluation;
+import entity.Logistics;
 import entity.Orders;
 import entity.Reply;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import service.EvaluationService;
+import service.LogisticsService;
 import service.OrdersService;
 import service.ReplyService;
 import utils.OrderStatus;
@@ -30,6 +32,9 @@ public class OrdersController {
 
     @Autowired(required = false)
     ReplyService replyService;
+
+    @Autowired
+    LogisticsService logisticsService;
 
     @RequestMapping("/listOrders")
     public ModelAndView listOrders(HttpServletRequest req, HttpSession httpSession) {
@@ -105,15 +110,17 @@ public class OrdersController {
         return mav;
     }
     @RequestMapping("/viewOrder")
-    public ModelAndView viewOrder(HttpServletRequest req){
+    public ModelAndView viewOrder(HttpServletRequest req) throws Exception {
         ModelAndView mav =new ModelAndView();
         String code =req.getParameter("id");
         Orders o = ordersService.getByCode(code);
         Evaluation e = evaluationService.get(o.getCode());
         Reply r = replyService.getByCode(o.getCode());
+        Logistics logistics = logisticsService.orderGet(o.getId());
         mav.addObject("evaluation",e);
         mav.addObject("order",o);
         mav.addObject("reply",r);
+        mav.addObject("logistics",logistics);
         mav.setViewName("orders/viewOrder");
         return mav;
     }

@@ -69,7 +69,17 @@
         </tr>
 
     </table>
-
+    <div style="border-bottom: 1px solid rgba(0,0,0,.1);">
+        <div style="border-bottom: 1px solid rgba(0,0,0,.1); width:890px; margin:0 auto;height: 41px;">
+            <span style="font-size: 21px; float:left;">物流信息</span>
+        </div>
+        <c:forEach items="${logistics.logisticsItemList}" var="lo" varStatus="st">
+            <div class="logistics" style="width:800px;margin:0 auto;font-size:17px;padding-bottom:7px;">
+                <span style="padding-left:50px;">${lo.date} :</span>
+                <span style="padding-left:88px;">${lo.info}</span>
+            </div>
+        </c:forEach>
+    </div>
     <div class="form-content" style="margin-top:25px;width:100%">
         <div class="formtitle" style="font-size:22px;float:left;">
             <span>订单评价</span>

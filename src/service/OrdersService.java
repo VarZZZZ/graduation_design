@@ -14,7 +14,7 @@ public interface OrdersService {
 	public List<Orders> list();
 	public List<Orders> listOrder();
 	public float getTotal(int id);
-	public int addToOrders(int uid);
+	public String addToOrders(int uid);
 	Orders getByCode(String code);
 
 }

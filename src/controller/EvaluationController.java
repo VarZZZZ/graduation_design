@@ -8,10 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import service.CustomizationService;
-import service.EvaluationService;
-import service.ProductService;
-import service.UserService;
+import service.*;
 import viewmodel.CustomizationVM;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,18 +31,21 @@ public class EvaluationController {
     UserService userService;
     @Autowired
     ProductService productService;
+    @Autowired
+    LogisticsService logisticsService;
 
     @RequestMapping("/addEvaluation")
-    public ModelAndView addEvaluation(HttpServletRequest req){
+    public ModelAndView addEvaluation(HttpServletRequest req) throws Exception {
         ModelAndView mav = new ModelAndView();
         String id = req.getParameter("id");
         String total=req.getParameter("total");
         Orders o = new Orders();
         o=ordersMapper.getOrdersByCode(id);
-
+        Logistics logistics = logisticsService.orderGet(o.getId());
         mav.addObject("orders",o);
         mav.addObject("id",id);
         mav.addObject("total",total);
+        mav.addObject("logistics",logistics);
         mav.setViewName("evaluation/add");
         return mav;
     }

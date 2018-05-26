@@ -16,21 +16,22 @@
     </resultMap>
 
     <insert id="orderAdd" parameterType="Logistics">
-        INSERT INTO logistics (oid) VALUES (#{orders.id})
+        INSERT INTO logistics (oid) VALUES (#{oid})
     </insert>
     <insert id="customizedAdd" parameterType="Logistics">
-        INSERT INTO logistics (cusid) VALUES (#{customization.id})
+        INSERT INTO logistics (cusid) VALUES (#{cusid})
     </insert>
     <select id="orderGet" parameterType="_int" resultMap="logisticsBean">
         SELECT l.id 'loid',l.oid 'oid',li.id 'loiid',info,date
         FROM logistics l left JOIN logisticsitem li on l.id=li.loid
-        WHERE oid = #{oid}
+        WHERE oid = #{oid} order by li.id DESC
     </select>
 
     <select id="customizedGet" parameterType="_int" resultMap="logisticsBean">
         SELECT l.id 'loid',l.cusid 'cusid',li.id 'loiid',info,date
         FROM logistics l left JOIN logisticsitem li on l.id=li.loid
-        WHERE cusid=#{cusid}
+        WHERE cusid=#{cusid} order by li.id DESC
+
     </select>
 
 </mapper>

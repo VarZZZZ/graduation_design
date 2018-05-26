@@ -87,7 +87,7 @@ public class OrdersServiceImpl implements OrdersService {
 
 	@Override
 	@Transactional(propagation= Propagation.REQUIRED,rollbackForClassName="Exception")
-	public int addToOrders(int uid) {
+	public String addToOrders(int uid) {
 		Orders orders=new Orders();
 		CodeUtil codeUtil=new CodeUtil();
 		String code=codeUtil.AutoOrdersCode();
@@ -112,7 +112,7 @@ public class OrdersServiceImpl implements OrdersService {
 		Orders newOrders = ordersMapper.get(or.getId());
 		newOrders.setTotal(total);
 		ordersMapper.update(newOrders);
-		return 1;
+		return code;
 	}
 
 	@Override

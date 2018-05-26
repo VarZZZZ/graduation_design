@@ -101,8 +101,7 @@ public class CartController {
 	@ResponseBody
 	public String addToOrders(HttpSession httpSession) {
 		int uid = (Integer)httpSession.getAttribute("Uid");
-		int rel=ordersService.addToOrders(uid);
-		
-		return String.valueOf(rel);
+
+		return ordersService.addToOrders(uid);
 	}
 }

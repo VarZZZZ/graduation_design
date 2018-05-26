@@ -70,6 +70,14 @@
 
         });
 
+        $(".btnAddAfterSale").click(function(){
+            $("#myModalCreate").modal("show");
+        });
+        $(".AFCreate").click(function(){
+            $(".AFCreate").attr("type", "submit");
+            $("formAfterSaleCreate").submit();
+        })
+
     });
 </script>
 
@@ -98,12 +106,25 @@
             </td>
             <td>
                 ￥${order.total}<br/>
+                <a class="btn btnSet btnAddAfterSale" style="cursor: pointer;" >申请售后</a><br>
             </td>
         </tr>
 
     </table>
 
     <input id="code" value="${order.code}" hidden="hidden"/>
+
+    <div style="border-bottom: 1px solid rgba(0,0,0,.1);">
+        <div style="border-bottom: 1px solid rgba(0,0,0,.1); width:890px; margin:0 auto;height: 41px;">
+            <span style="font-size: 21px; float:left;">物流信息</span>
+        </div>
+        <c:forEach items="${logistics.logisticsItemList}" var="lo" varStatus="st">
+            <div class="logistics" style="width:800px;margin:0 auto;font-size:17px;padding-bottom:7px;">
+                <span style="padding-left:50px;">${lo.date} :</span>
+                <span style="padding-left:88px;">${lo.info}</span>
+            </div>
+        </c:forEach>
+    </div>
 
     <div class="form-content">
         <div class="row rowStyle">
@@ -120,17 +141,7 @@
         </div>
         <c:choose>
             <c:when test="${empty reply}">
-                <div class="row rowStyle">
-                    <div class="col-lg-11">
 
-                    </div>
-                    <div class="col-lg-1">
-                        <button type="submit"
-                                class="btn btn-primary btnSubmit btnReply">
-                            回复
-                        </button>
-                    </div>
-                </div>
             </c:when>
             <c:otherwise>
                 <div class="row rowStyle">
@@ -154,6 +165,48 @@
 </div>
 
 
+<div class="modal fade" id="myModalCreate" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-title-background">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    售后申请
+                </h4>
+            </div>
+            <form id="formAfterSaleCreate" action="addAfterSale" method="post">
+                <div class="modal-body">
+
+                    <div class="row set-padding-bottom">
+                        <div class="col-lg-3">
+                            <label>申请原因</label>
+                        </div>
+                        <input id="oid" name="oid" type="text" hidden="hidden"/>
+                        <textarea class="textareaStyle" name="infoCreate" style="margin-left: 15px;"
+                                  cols="" rows="" id="infoCreateCreate">
+
+                        </textarea>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="AFCreate btn btn-primary">
+                        确认申请
+                    </button>
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        关闭
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 

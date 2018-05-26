@@ -34,7 +34,7 @@
           </span>
     </div>
     <div class="other fr">
-        <a class="item-1" href="/item-1" style="text-decoration: none;">个人信息<em>|</em></a>
+        <a class="item-1" href="userInfo" style="text-decoration: none;">个人信息<em>|</em></a>
         <a class="item-1" href="listCart" style="text-decoration: none;">购物车<em>|</em></a>
         <a class="item-1" href="listOrders" style="text-decoration: none;">我的订单<em>|</em></a>
     </div>

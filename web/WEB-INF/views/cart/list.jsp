@@ -77,8 +77,8 @@
                     type: "POST",
                     url: "addToOrders",
                     success: function (json) {
-                        if (json === "1") {
-                            window.location.href="home";
+                        if (json!==null) {
+                            window.location.href="addPayment?id="+json+"&total="+t;
                         }else{
                             $("#Info").text("添加失败");
                             $("#myModalInfo").modal("show");
@@ -129,6 +129,7 @@
 
         <br>
         <a href="javascript:void(0);"
+           data1="${total}"
            class="ToSubmit btn btnBuy">
             提交订单
         </a>

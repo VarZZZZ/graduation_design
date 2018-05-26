@@ -71,7 +71,8 @@
                     <c:choose>
                         <c:when test="${o.status=='待确认'}">
                             <input id="conf" value="${o.id}" type="hidden" />
-                            <a class="btn btnSet btnConfirm">${o.status}</a>
+                            <a class="btn btnSet btnConfirm" style="cursor: pointer;">${o.status}</a><br>
+                            <div style="padding-top:12px;"><a href="getOrdLogistics?oid=${o.id}" class="btn btnSet">查看物流</a></div>
                         </c:when>
                         <c:when test="${o.status=='待发货'}">
                             <a class="btn btnSet" style="border: solid 1px #806161;">${o.status}</a>
