@@ -1,11 +1,11 @@
 package utils;
 
 public class OrderStatus {
-	public static String ORDER_NOT_PAY="´ı¸¶¿î";
-	public static String ORDER_NOT_SEND="´ı·¢»õ";
-	public static String ORDER_NOT_CONFIRM="´ıÈ·ÈÏ";
-	public static String ORDER_NOT_EVALUATION="´ıÆÀ¼Û";
-	public static String ORDER_OK ="²é¿´ÏêÇé";
-	public static String ORDER_NOT_PRODUCE="´ıÉú²ú";
-	public static String ORDER_LOGISTICS="ÎïÁ÷ÏêÇé";
+	public static String ORDER_NOT_PAY="å¾…ä»˜æ¬¾";
+	public static String ORDER_NOT_SEND="å¾…å‘è´§";
+	public static String ORDER_NOT_CONFIRM="å¾…ç¡®è®¤";
+	public static String ORDER_NOT_EVALUATION="å¾…è¯„ä»·";
+	public static String ORDER_OK ="æŸ¥çœ‹è¯¦æƒ…";
+	public static String ORDER_NOT_PRODUCE="å¾…ç”Ÿäº§";
+	public static String ORDER_LOGISTICS="æŸ¥çœ‹ç‰©æµ";
 }

@@ -1,17 +1,12 @@
 package controller;
 
-import entity.Evaluation;
-import entity.Logistics;
-import entity.Orders;
-import entity.Reply;
+import entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import service.EvaluationService;
-import service.LogisticsService;
-import service.OrdersService;
-import service.ReplyService;
+import service.*;
+import utils.AfterSaleStatus;
 import utils.OrderStatus;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +30,9 @@ public class OrdersController {
 
     @Autowired
     LogisticsService logisticsService;
+
+    @Autowired
+    AfterSaleService afterSaleService;
 
     @RequestMapping("/listOrders")
     public ModelAndView listOrders(HttpServletRequest req, HttpSession httpSession) {
@@ -113,7 +111,9 @@ public class OrdersController {
     public ModelAndView viewOrder(HttpServletRequest req) throws Exception {
         ModelAndView mav =new ModelAndView();
         String code =req.getParameter("id");
+
         Orders o = ordersService.getByCode(code);
+        AfterSale afterSale = afterSaleService.getByOid(o.getId());
         Evaluation e = evaluationService.get(o.getCode());
         Reply r = replyService.getByCode(o.getCode());
         Logistics logistics = logisticsService.orderGet(o.getId());
@@ -121,6 +121,7 @@ public class OrdersController {
         mav.addObject("order",o);
         mav.addObject("reply",r);
         mav.addObject("logistics",logistics);
+        mav.addObject("afterSale",afterSale);
         mav.setViewName("orders/viewOrder");
         return mav;
     }

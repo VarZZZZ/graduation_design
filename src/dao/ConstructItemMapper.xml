@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ConstructItemMapper">
+    <resultMap type="ConstructItem" id="ConstructItemBean">
+        <id column="cuiid" property="id"/>
+        <result column="info" property="info"/>
+        <result column="date" property="date"/>
+        <result column="imageurl" property="imageurl"/>
+
+        <association property="construct" javaType="Construct">
+            <id column="cuid" property="id"/>
+            <result column="oid" property="oid"/>
+            <result column="status" property="status"/>
+        </association>
+
+    </resultMap>
+
+    <insert id="add" parameterType="ConstructItem">
+        insert into constructitem(cuid,imageurl,info,date) VALUE (#{loid},#{imageurl},#{info},#{date})
+    </insert>
+
+</mapper>

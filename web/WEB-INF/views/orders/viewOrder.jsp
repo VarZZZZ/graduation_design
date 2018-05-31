@@ -106,7 +106,12 @@
             </td>
             <td>
                 ￥${order.total}<br/>
-                <a class="btn btnSet btnAddAfterSale" style="cursor: pointer;" >申请售后</a><br>
+                <c:if test="${not empty afterSale}">
+                    售后状态：${afterSale.status}
+                </c:if>
+                <c:if test="${empty afterSale}">
+                    <a class="btn btnSet btnAddAfterSale" style="cursor: pointer;" >申请售后</a><br>
+                </c:if>
             </td>
         </tr>
 
@@ -185,7 +190,8 @@
                         <div class="col-lg-3">
                             <label>申请原因</label>
                         </div>
-                        <input id="oid" name="oid" type="text" hidden="hidden"/>
+                        <input id="oid" value="${order.id}" name="oid" type="text" hidden="hidden"/>
+                        <input id="ocode" value="${order.code}" name="ocode" type="text" hidden="hidden" />
                         <textarea class="textareaStyle" name="infoCreate" style="margin-left: 15px;"
                                   cols="" rows="" id="infoCreateCreate">
 

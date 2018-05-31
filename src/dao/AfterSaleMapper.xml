@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.AfterSaleMapper">
     <insert id="add" parameterType="AfterSale">
-        insert into aftersale(oid,info,status) values(#{id},#{info},#{status})
+        insert into aftersale(oid,info,status) values(#{oid},#{info},#{status})
     </insert>
 
     <select id="get" parameterType="_int" resultType="AfterSale">
@@ -13,7 +13,10 @@
     <select id="getByOid" parameterType="_int" resultType="AfterSale">
         select * from aftersale where oid=#{oid}
     </select>
-    <select id="update" parameterType="AfterSale">
+    <update id="update" parameterType="AfterSale" >
         update aftersale set status=#{status} where id=#{id}
+    </update>
+    <select id="list" resultType="AfterSale">
+        select * from aftersale
     </select>
 </mapper>

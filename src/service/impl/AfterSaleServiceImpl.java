@@ -5,6 +5,10 @@ import entity.AfterSale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.AfterSaleService;
+import utils.AfterSaleStatus;
+import utils.OrderStatus;
+
+import java.util.List;
 
 /**
  * Created by Liangying on 2018/5/26.
@@ -19,17 +23,22 @@ public class AfterSaleServiceImpl implements AfterSaleService {
     }
 
     @Override
-    public int get(int id) {
+    public AfterSale get(int id) {
         return afterSaleMapper.get(id);
     }
 
     @Override
-    public int getByOid(int oid) {
+    public AfterSale getByOid(int oid) {
         return afterSaleMapper.getByOid(oid);
     }
 
     @Override
     public int update(AfterSale afterSale) {
         return afterSaleMapper.update(afterSale);
+    }
+
+    @Override
+    public List<AfterSale> list() {
+        return afterSaleMapper.list();
     }
 }

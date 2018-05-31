@@ -43,6 +43,31 @@
                 }
             });
         });
+
+        var z={};
+        $(".btnService").on("click", function () {
+            z.id = $(this).attr("data1");
+            z.code=$(this).attr("data2");
+            z.total=$(this).attr("data3");
+            $("#myModalService").modal("show");
+        });
+        $(".Confirm").on("click", function () {
+            var id;
+            v.id = $("#idConfirm").val();
+            $.ajax({
+                type: "POST",
+                url: "addConfirm",
+                data: {"oid":z.id,"ocode":z.code,"ototal":z.total},
+                success: function (json) {
+                    if (json === "1") {
+                        window.location.href = "addPayment?id="+z.code+"total="+z.total;
+                    } else if (json === "0") {
+                        $("#Info").text("确认失败");
+                        $("#myModalInfo").modal("show");
+                    }
+                }
+            });
+        });
     });
 </script>
 <div class="main-table">
@@ -70,6 +95,12 @@
         </td>
         <td>
             ￥${orders.total}<br/>
+            <c:if test="${empty construct}">
+                <a class="btn btnSet btnService" data1="${orders.id}" data2="${orders.code}" data3="${orders.total}" style="cursor: pointer;">施工安装服务</a><br>
+            </c:if>
+            <c:if test="${not empty construct}">
+                <a class="btn btnSet" style="border: solid 1px #806161;">${construct.status}</a>
+            </c:if>
         </td>
     </tr>
 
@@ -127,5 +158,35 @@
     </div>
 </div>
 
+<div class="modal fade" id="myModalService" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-title-background">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    施工安装服务对话框
+                </h4>
+            </div>
+            <div class="modal-body">
+                确定需要施工安装服务吗？</br>
+                <span style="font-size:9px;">提示：安装价格面议</span>
+            </div>
+            <div class="modal-footer">
+                <input id="idConfirm" hidden="hidden"/>
+                <button type="button" class="Confirm btn btn-primary">
+                    确认
+                </button>
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                    关闭
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <%@ include file="../public/alertdialog.jsp" %>
 <%@ include file="../public/footer.jsp" %>
