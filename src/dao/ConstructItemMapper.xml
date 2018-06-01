@@ -18,7 +18,7 @@
     </resultMap>
 
     <insert id="add" parameterType="ConstructItem">
-        insert into constructitem(cuid,imageurl,info,date) VALUE (#{loid},#{imageurl},#{info},#{date})
+        insert into constructitem(cuid,imageurl,info,date) VALUE (#{cuid},#{imageurl},#{info},#{date})
     </insert>
 
 </mapper>

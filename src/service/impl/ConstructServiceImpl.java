@@ -56,5 +56,10 @@ public class ConstructServiceImpl implements ConstructService {
         return constructList;
     }
 
+    @Override
+    public int update(Construct construct) {
+        return constructMapper.update(construct);
+    }
+
 
 }

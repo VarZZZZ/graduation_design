@@ -97,15 +97,17 @@ public class OrdersController {
     }
 
     @RequestMapping("/adminCheckOrders")
-    public ModelAndView adminCheckOrders(HttpServletRequest req){
+    public ModelAndView adminCheckOrders(HttpServletRequest req) throws Exception {
         ModelAndView mav =new ModelAndView();
         int id =Integer.parseInt(req.getParameter("id"));
         Orders o = ordersService.getOrders(id);
         Evaluation e = evaluationService.get(o.getCode());
         Reply r = replyService.getByCode(o.getCode());
+        Logistics logistics = logisticsService.orderGet(o.getId());
         mav.addObject("evaluation",e);
         mav.addObject("order",o);
         mav.addObject("reply",r);
+        mav.addObject("logistics",logistics);
         mav.setViewName("orders/checkOrders");
         return mav;
     }

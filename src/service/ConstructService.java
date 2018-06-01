@@ -12,4 +12,5 @@ public interface ConstructService {
     Construct get(int id);
     Construct getByOid(int oid);
     List<Construct> list();
+    int update(Construct construct);
 }
