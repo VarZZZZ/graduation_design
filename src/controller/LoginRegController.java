@@ -1,6 +1,7 @@
 package controller;
 
 import com.alibaba.fastjson.JSON;
+import entity.AdminUser;
 import entity.Cart;
 import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import service.AdminUserService;
 import service.CartService;
 import service.UserService;
 import utils.CodeUtil;
@@ -24,6 +26,9 @@ public class LoginRegController {
 
     @Autowired
     CartService cartService;
+    @Autowired
+    AdminUserService adminUserService;
+
     @RequestMapping("/login")
     public ModelAndView login(){
         ModelAndView mav = new ModelAndView();
@@ -48,6 +53,12 @@ public class LoginRegController {
         }
 
         return String.valueOf(loginRel);
+    }
+    @RequestMapping("/logout")
+    public ModelAndView logout(HttpSession httpSession){
+        ModelAndView mav = new ModelAndView();
+        httpSession.removeAttribute("");
+        return mav;
     }
 
     @RequestMapping("/register")
@@ -80,6 +91,30 @@ public class LoginRegController {
     }
 
 
+    @RequestMapping("/adminLogin")
+    public ModelAndView adminLogin() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("login/adminLogin");
+        return mav;
+    }
+    @RequestMapping("/adminLoginIn")
+    @ResponseBody
+    public String adminLoginIn(String userObj,HttpSession httpSession) {
+        AdminUser adminUser= JSON.parseObject(
+                userObj, AdminUser.class);
+        AdminUser rel=adminUserService.login(
+                adminUser.getCode(),
+                adminUser.getPassword());
+
+        int loginRel=0;
+        if(rel!=null) {
+            loginRel=1;
+            httpSession.setAttribute("adminId",rel.getId());
+            httpSession.setAttribute("adminName",rel.getName());
+        }
+
+        return String.valueOf(loginRel);
+    }
 
 
 }

@@ -1,24 +1,24 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
-         pageEncoding="UTF-8" import="java.util.*"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../public/prefix.jsp" %>
 <link href="css/evaluation.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
-    $(document).ready(function(){
-        var v={};
+    $(document).ready(function () {
+        var v = {};
         var info = "";
-        $(".btnSubmit").on("click",function () {
-            v.id=$("#id").val();
-            v.evacontent=$("#evacontent").val();
+        $(".btnSubmit").on("click", function () {
+            v.id = $("#id").val();
+            v.evacontent = $("#evacontent").val();
 
             $.ajax({
                 type: "POST",
-                url:  "addToEvaluation",
-                data: { evaluationObj: JSON.stringify(v) },
+                url: "addToEvaluation",
+                data: {evaluationObj: JSON.stringify(v)},
                 success: function (json) {
                     if (json === "1") {
-                        window.location.href="listOrders";
-                    }else{
+                        window.location.href = "listOrders";
+                    } else {
                         $("#Info").text("评论失败");
                         $("#myModalInfo").modal("show");
                     }
@@ -65,6 +65,22 @@
             </td>
             <td>
                 ￥${orders.total}<br/>
+
+
+                <c:if test="${not empty construct}">
+                    <c:if test="${construct.status=='施工安装服务已申请'}">
+                        <a class="btn btnSet" style="border: solid 1px #806161;">${construct.status}</a>
+                    </c:if>
+                    <c:if test="${construct.status=='正在施工安装'}">
+                        <a href="checkConstruct?id=${construct.id}"
+                           class="btn btnSet">${construct.status}</a>
+                    </c:if>
+                    <c:if test="${construct.status=='施工安装已完成'}">
+                        <a href="checkConstruct?id=${construct.id}"
+                           class="btn btnSet">${construct.status}</a></br>
+                    </c:if>
+                </c:if>
+
             </td>
         </tr>
 
@@ -86,17 +102,17 @@
         </div>
 
     </div>
-        <div class="row rowStyle" style="width:500px;">
-            <div class="col-lg-2">
-                <input id="id" value="${id}" hidden="hidden"/>
-                <textarea class="textareaStyle"
-                          cols="" rows="" id="evacontent" name="evacontent"></textarea>
-            </div>
-            <div class="col-lg-9" style="width: 20px;margin-top: 202px;margin-left: 0px;">
-                <button type="submit" class="btn btn-primary Create btnSubmit" >评论</button>
-            </div>
+    <div class="row rowStyle" style="width:500px;">
+        <div class="col-lg-2">
+            <input id="id" value="${id}" hidden="hidden"/>
+            <textarea class="textareaStyle"
+                      cols="" rows="" id="evacontent" name="evacontent"></textarea>
+        </div>
+        <div class="col-lg-9" style="width: 20px;margin-top: 202px;margin-left: 0px;">
+            <button type="submit" class="btn btn-primary Create btnSubmit">评论</button>
         </div>
     </div>
+</div>
 
 </div>
 

@@ -44,4 +44,7 @@
     <select id="listProducts" parameterType="_int" resultMap="CategoryBBean">
         select c.id 'cbid',p.id 'pid',c.name 'cname',p.name 'pname',code,price,imageurl,description from categoryb c left join product p on c.id=p.cbid where p.cbid=#{id}
     </select>
+    <select id="listByCa" parameterType="_int" resultType="CategoryB">
+        select * from categoryb  cb left join categorya ca on ca.id=cb.caid where ca.id=#{id}
+    </select>
 </mapper>

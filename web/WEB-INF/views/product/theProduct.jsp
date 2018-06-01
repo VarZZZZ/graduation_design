@@ -29,7 +29,7 @@
                 </td>
                 <td class="table_td2">
                     <c:forEach items="${ca.categoryBs}" var="cb" varStatus="st2">
-                        <a class="a_td" href="#" style="text-decoration: none;">${cb.name}</a>
+                        <a class="a_td" href="listProduct?categoryA=${ca.name}&&categoryB=${cb.name}" style="text-decoration: none;">${cb.name}</a>
                         <span class="ca_split">|</span>
                     </c:forEach>
                 </td>

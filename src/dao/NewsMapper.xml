@@ -18,7 +18,7 @@
     <select id="list" resultType="News">
         select * from news
     </select>
-    <select id="listByName" parameterType="String" resultType="News">
-        select * from news where title=#{title}
+    <select id="listByTitle" parameterType="String" resultType="News">
+        select * from news where title like CONCAT('%',#{name},'%')
     </select>
 </mapper>

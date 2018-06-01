@@ -13,22 +13,26 @@
 <div class="Alltop1">
     <div class="login_sign fl">
           <span id="login_signBar" class="fl" style="display:block;">
-              <span class="fl">欢迎光临PE管服务官网</span>
+              <span class="fl">您正在PE管在线采购后台网站，欢迎您，</span>
               <%
-                  String username = (String) session.getAttribute("Uname");
-                  int uid = (Integer) session.getAttribute("Uid");
+                  String username = (String) session.getAttribute("adminName");
+                  int uid = (Integer) session.getAttribute("adminId");
                   if (username != null) {
               %>
                      <span class="fl">
                           ,&nbsp;&nbsp;<%out.print(username);%>
                      </span>
-                     <a class="fl" href="/logout">&nbsp;&nbsp;退出</a>
+
               <%
-              } %>
+                  }else
+                      response.sendRedirect("adminLogin");
+
+               %>
           </span>
     </div>
     <div class="other fr">
         <a class="item-1" href="listAdminOrders" style="text-decoration:none;">订单处理<em>|</em></a>
+        <a class="item-1" href="adminListConstruct" style="text-decoration:none;">施工处理<em>|</em></a>
         <a class="item-1" href="listAdminAfterSale" style="text-decoration:none;">售后服务<em>|</em></a>
     </div>
 </div>

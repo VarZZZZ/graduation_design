@@ -17,4 +17,5 @@ public interface CategoryBService {
     List<CategoryB> listByName(String name);
     CategoryB listProducts(int id);
     CategoryB getByName(String name);
+    List<CategoryB> listByCa(int id);
 }

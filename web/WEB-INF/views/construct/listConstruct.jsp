@@ -9,7 +9,7 @@
             <a href="home">首页</a>
         </span>
         <span> ></span>
-        <span>我的订单</span>
+        <span>施工订单</span>
     </div>
 </div>
 
@@ -48,13 +48,13 @@
             <th>订单明细</th>
             <th style="width:18%;">操作</th>
         </tr>
-        <c:forEach items="${orders}" var="o" varStatus="st">
+        <c:forEach items="${constructList}" var="o" varStatus="st">
             <tr>
-                <td>${o.code}</td>
+                <td>${o.orders.code}</td>
 
                 <td>
                     <table class="table">
-                        <c:forEach items="${o.ordersItems}" var="c" varStatus="st">
+                        <c:forEach items="${o.orders.ordersItems}" var="c" varStatus="st">
                             <tr>
                                 <td>
                                     <img class="imageStyle" src="${c.product.imageurl}"/>
@@ -67,23 +67,14 @@
                     </table>
                 </td>
                 <td>
-                    ￥${o.total}<br/>
-                    <c:choose>
-                        <c:when test="${o.status=='待确认'}">
-                            <input id="conf" value="${o.id}" type="hidden" />
-                            <a class="btn btnSet btnConfirm" style="cursor: pointer;">${o.status}</a><br>
-                            <div style="padding-top:12px;"><a href="getOrdLogistics?oid=${o.id}" class="btn btnSet">查看物流</a></div>
-                        </c:when>
-                        <c:when test="${o.status=='待发货'}">
-                            <a class="btn btnSet" style="border: solid 1px #806161;">${o.status}</a>
-                        </c:when>
-                        <c:otherwise>
-                            <a href="ordersStatusCenter?id=${o.code}&total=${o.total}&status=${o.status}"
-                               class="btn btnSet">${o.status}</a>
-                        </c:otherwise>
-                    </c:choose>
-
-
+                    ￥${o.orders.total}<br/>
+                    <c:if test="${o.status=='施工安装服务已申请'}">
+                        <a class="btn btnSet" style="border: solid 1px #806161;">${o.status}</a>
+                    </c:if>
+                    <c:if test="${o.status!='施工安装服务已申请'}">
+                        <a href="checkConstruct?id=${o.id}"
+                           class="btn btnSet">${o.status}</a>
+                    </c:if>
                 </td>
             </tr>
         </c:forEach>

@@ -43,4 +43,7 @@
     <select id="listByName" parameterType="String" resultMap="ProductBean">
         select ca.id 'caid',ca.name 'caname',cb.id 'cbid',cb.name 'cbname',p.id 'pid',p.name 'pname',code,price,imageurl,description,color  from product p join categoryb cb on cb.id=p.cbid join categorya ca on ca.id=cb.caid where p.name like CONCAT('%',#{name},'%')
     </select>
+    <select id="getByName" parameterType="String" resultMap="ProductBean">
+        select ca.id 'caid',ca.name 'caname',cb.id 'cbid',cb.name 'cbname',p.id 'pid',p.name 'pname',code,price,imageurl,description,color  from product p join categoryb cb on cb.id=p.cbid join categorya ca on ca.id=cb.caid where p.name=#{name}
+    </select>
 </mapper>

@@ -3,7 +3,14 @@
 
 <%@ include file="../public/header.jsp" %>
 <link href="css/home.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">
+    $(document).ready(function () {
+       $(".btn_search").click(function(){
+           $("#search_bar").submit();
+       }) ;
 
+    });
+</script>
 
 <html>
 <head>
@@ -37,6 +44,7 @@
         <a class="item-1" href="userInfo" style="text-decoration: none;">个人信息<em>|</em></a>
         <a class="item-1" href="listCart" style="text-decoration: none;">购物车<em>|</em></a>
         <a class="item-1" href="listOrders" style="text-decoration: none;">我的订单<em>|</em></a>
+        <a class="item-1" href="listConstruct" style="text-decoration: none;">施工查询<em>|</em></a>
         <a class="item-1" href="listAfterSale" style="text-decoration: none;">售后服务<em>|</em></a>
     </div>
 </div>
@@ -47,7 +55,7 @@
         </a>
     </div>
     <div class="ss">
-        <form id="search_bar" class="searchBar" action="/searchBar-result" method="post">
+        <form id="search_bar" class="searchBar" action="searchProduct" method="post">
             <div class="search_input">
                 <input class="key" name="search_keywords" placeholder="" type="text">
             </div>

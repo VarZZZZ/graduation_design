@@ -9,6 +9,7 @@ public class Orders {
 	private String status;
 	private float total;
 	private List<OrdersItem> ordersItems;
+	private Construct construct;
 	public int getId() {
 		return id;
 	}
@@ -46,5 +47,13 @@ public class Orders {
 
     public void setTotal(float total) {
         this.total = total;
+    }
+
+    public Construct getConstruct() {
+        return construct;
+    }
+
+    public void setConstruct(Construct construct) {
+        this.construct = construct;
     }
 }

@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import service.ConstructService;
 import service.OrdersService;
 import utils.CodeUtil;
 import utils.OrderStatus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,6 +31,9 @@ public class OrdersServiceImpl implements OrdersService {
 	
 	@Autowired
     CartItemMapper cartItemMapper;
+
+	@Autowired
+	ConstructService constructService;
 	
 	@Override
 	public int add(Orders orders) {
@@ -52,7 +57,16 @@ public class OrdersServiceImpl implements OrdersService {
 
 	@Override
 	public List<Orders> getOrdersByUid(int id) {
-		return ordersMapper.getOrdersByUid(id);
+	    List<Orders> ordersList = ordersMapper.getOrdersByUid(id);
+	    List<Orders> orders = new ArrayList<>();
+	    for(Orders o:ordersList){
+	        Construct c = constructService.getByOid(o.getId());
+	        if(c!=null){
+	            o.setConstruct(c);
+            }
+            orders.add(o);
+        }
+		return orders;
 	}
 
 	@Override

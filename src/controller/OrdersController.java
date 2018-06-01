@@ -33,6 +33,8 @@ public class OrdersController {
 
     @Autowired
     AfterSaleService afterSaleService;
+    @Autowired
+    ConstructService constructService;
 
     @RequestMapping("/listOrders")
     public ModelAndView listOrders(HttpServletRequest req, HttpSession httpSession) {
@@ -117,11 +119,13 @@ public class OrdersController {
         Evaluation e = evaluationService.get(o.getCode());
         Reply r = replyService.getByCode(o.getCode());
         Logistics logistics = logisticsService.orderGet(o.getId());
+        Construct construct = constructService.getByOid(o.getId());
         mav.addObject("evaluation",e);
         mav.addObject("order",o);
         mav.addObject("reply",r);
         mav.addObject("logistics",logistics);
         mav.addObject("afterSale",afterSale);
+        mav.addObject("construct",construct);
         mav.setViewName("orders/viewOrder");
         return mav;
     }

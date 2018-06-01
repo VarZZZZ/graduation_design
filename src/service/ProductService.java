@@ -12,6 +12,7 @@ public interface ProductService {
     int delete(int id);
     int update(Product product);
     Product get(int id);
+    Product getByName(String name);
     List<Product> list();
     List<Product> listCode(String code);
     List<Product> listByName(String name);

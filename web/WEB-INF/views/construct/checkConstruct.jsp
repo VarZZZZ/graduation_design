@@ -106,35 +106,12 @@
             </td>
             <td>
                 ￥${order.total}<br/>
-                <c:if test="${empty construct}">
-                    <c:if test="${not empty afterSale}">
-                        售后状态：${afterSale.status}
-                    </c:if>
-                    <c:if test="${empty afterSale}">
-                        <a class="btn btnSet btnAddAfterSale" style="cursor: pointer;" >申请售后</a><br>
-                    </c:if>
+                <c:if test="${not empty afterSale}">
+                    售后状态：${afterSale.status}
                 </c:if>
-
-                <c:if test="${not empty construct}">
-                    <c:if test="${construct.status=='施工安装服务已申请'}">
-                        <a class="btn btnSet" style="border: solid 1px #806161;">${construct.status}</a>
-                    </c:if>
-                    <c:if test="${construct.status=='正在施工安装'}">
-                        <a href="checkConstruct?id=${construct.id}"
-                           class="btn btnSet">${construct.status}</a>
-                    </c:if>
-                    <c:if test="${construct.status=='施工安装已完成'}">
-                        <a href="checkConstruct?id=${construct.id}"
-                           class="btn btnSet">${construct.status}</a></br>
-                        <c:if test="${not empty afterSale}">
-                            售后状态：${afterSale.status}
-                        </c:if>
-                        <c:if test="${empty afterSale}">
-                            <a class="btn btnSet btnAddAfterSale" style="cursor: pointer;" >申请售后</a><br>
-                        </c:if>
-                    </c:if>
+                <c:if test="${empty afterSale}">
+                    <a class="btn btnSet btnAddAfterSale" style="cursor: pointer;" >申请售后</a><br>
                 </c:if>
-
             </td>
         </tr>
 

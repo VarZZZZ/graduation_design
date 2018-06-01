@@ -113,7 +113,7 @@
         <hr/>
     </div>
     <div class="panel-body panel-header">
-        <form id="form1" action="listProduct" method="get">
+        <form id="form1" action="newsList" method="get">
             <ul class="list-inline">
                 <li class="liname">按名称:</li>
                 <li>

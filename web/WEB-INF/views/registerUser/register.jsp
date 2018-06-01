@@ -81,9 +81,7 @@
                         <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="确认密码" readonly
                                onfocus="this.removeAttribute('readonly');">
                     </div>
-                    <div class="readme">
-                        <input class="cbReaderme" name="cb" type="checkbox"> 点击表示您同意网站的《服务协议》
-                    </div>
+
 
                 </div>
 

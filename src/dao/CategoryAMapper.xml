@@ -45,7 +45,7 @@
     <select id="listByName" parameterType="String" resultType="CategoryA">
         select * from categorya where name like CONCAT('%',#{name},'%')
     </select>
-    <select id="listCategoryB" parameterType="_int" resultMap="CategoryABean">
+    <select id="listCategoryB"  resultMap="CategoryABean">
         select ca.id 'caid',ca.name 'caname',cb.id 'cbid',cb.name 'cbname' from categorya ca left join categoryb cb on ca.id=cb.caid
     </select>
     <select id="listProducts" parameterType="_int" resultMap="CategoryABean">

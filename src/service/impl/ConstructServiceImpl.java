@@ -36,8 +36,11 @@ public class ConstructServiceImpl implements ConstructService {
     @Override
     public Construct getByOid(int oid) {
         Construct construct = constructMapper.getByOid(oid);
-        Orders orders = ordersService.getOrders(construct.getOid());
-        construct.setOrders(orders);
+        Orders orders;
+        if(construct!=null) {
+            orders = ordersService.getOrders(construct.getOid());
+            construct.setOrders(orders);
+        }
         return construct;
     }
 
@@ -46,10 +49,12 @@ public class ConstructServiceImpl implements ConstructService {
         List<Construct> constructs = constructMapper.list();
         List<Construct> constructList = new ArrayList<>();
         for(Construct c: constructs){
-            Orders o = ordersService.get(c.getOid());
+            Orders o = ordersService.getOrders(c.getOid());
             c.setOrders(o);
             constructList.add(c);
         }
         return constructList;
     }
+
+
 }

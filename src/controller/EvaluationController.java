@@ -33,6 +33,8 @@ public class EvaluationController {
     ProductService productService;
     @Autowired
     LogisticsService logisticsService;
+    @Autowired
+    ConstructService constructService;
 
     @RequestMapping("/addEvaluation")
     public ModelAndView addEvaluation(HttpServletRequest req) throws Exception {
@@ -41,11 +43,13 @@ public class EvaluationController {
         String total=req.getParameter("total");
         Orders o = new Orders();
         o=ordersMapper.getOrdersByCode(id);
+        Construct construct = constructService.getByOid(o.getId());
         Logistics logistics = logisticsService.orderGet(o.getId());
         mav.addObject("orders",o);
         mav.addObject("id",id);
         mav.addObject("total",total);
         mav.addObject("logistics",logistics);
+        mav.addObject("construct",construct);
         mav.setViewName("evaluation/add");
         return mav;
     }

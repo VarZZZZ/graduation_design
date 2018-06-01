@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*"%>
 
-<%@ include file="../public/header.jsp" %> 
+<%@ include file="../public/header.jsp" %>
 <link href="css/login.css" rel="stylesheet" type="text/css"/>
 
 <script type="text/javascript">
 	$(document).ready(function () {
 		var info="";
 		var v={};
-		
+
 		$(".btnLogin").on("click", function () {
 			info="";
 			if($("#password").val()===""){
@@ -18,10 +18,10 @@
 				info="请填写手机号";
 			}
 			if(info===""){
-				
+
 				v.mobile=$("#mobile").val();
 				v.password=$("#password").val();
-				
+
 				$.ajax({
 					type: "POST",
 	            	url: "loginIn",
@@ -40,7 +40,7 @@
 	    		$("#myModalInfo").modal("show");
 			}
 		});
-		
+
 	});
 </script>
 
@@ -53,7 +53,7 @@
 		<img src="images/pe.jpg" />
 		<div class="login-box">
 			<h6 class="title">登录系统</h6>
-			
+
 			<form action="login" method="post">
 				<div class="login-form">
 					<div class="user-name">
@@ -65,16 +65,16 @@
 						<input type="password" id="password" placeholder="请输入密码" readonly onfocus="this.removeAttribute('readonly');">
                  	</div>
            		</div>
-           		
+
            		<br/>
                 <br/>
 				<input type="button" name="" value="登 录" class="btnLogin btn btn-primary">
 
 			</form>
-			
+
 			<br/>
 			<br/>
-			
+
 			<label>没有账号？</label>
 			<a href="register" class="register">我要注册</a>
 		</div>

@@ -71,4 +71,9 @@ public class CategoryBServiceImpl implements CategoryBService {
 
 	}
 
+	@Override
+	public List<CategoryB> listByCa(int id) {
+		return categoryBMapper.listByCa(id);
+	}
+
 }

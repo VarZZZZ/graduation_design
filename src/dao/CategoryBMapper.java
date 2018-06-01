@@ -18,4 +18,5 @@ public interface CategoryBMapper {
     public List<CategoryB> listName(String name);
     public List<CategoryB> listByName(String name);
     public CategoryB listProducts(int id);
+    List<CategoryB> listByCa(int id);
 }
