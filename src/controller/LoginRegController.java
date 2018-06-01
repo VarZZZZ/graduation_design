@@ -57,7 +57,9 @@ public class LoginRegController {
     @RequestMapping("/logout")
     public ModelAndView logout(HttpSession httpSession){
         ModelAndView mav = new ModelAndView();
-        httpSession.removeAttribute("");
+        httpSession.removeAttribute("Uid");
+        httpSession.removeAttribute("Uname");
+        mav.setViewName("home/home");
         return mav;
     }
 

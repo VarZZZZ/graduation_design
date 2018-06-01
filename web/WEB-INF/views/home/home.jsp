@@ -200,7 +200,7 @@
             <div class="picView">
                 <ul id="picul">
                     <li >
-                        <a href="#"><img src="images/pic1.jpg" />
+                        <a href="aboutUs"><img src="images/pic1.jpg" />
                         </a>
                     </li>
                     <li >

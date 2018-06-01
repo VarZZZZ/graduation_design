@@ -29,9 +29,10 @@
                      <span class="fl">
                           ,&nbsp;&nbsp;<%out.print(username);%>
                      </span>
-                     <a class="fl" href="/logout">&nbsp;&nbsp;退出</a>
+                     <a class="fl" href="logout">&nbsp;&nbsp;退出</a>
               <%
               } else {
+
               %>
               <a class="fl" rel="nofollow" href="login" style="text-decoration: none;">【请登录】</a>
               <a class="fl" rel="nofollow" href="register" style="text-decoration: none;">【免费注册】</a>
